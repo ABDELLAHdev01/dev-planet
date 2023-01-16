@@ -1,3 +1,8 @@
+<?php
+
+
+
+?>
 
 <?php include './app/includes/navbar.php' ?>
 <?php include './app/includes/section.php' ?>

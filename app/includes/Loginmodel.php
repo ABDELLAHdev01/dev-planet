@@ -8,7 +8,7 @@
         <div class="modal-body bgnav">
 
         <div class="w-75 d-flex m-auto">
-                <form action="" class="m-auto  d-flex flex-column justify-content-center w-100">
+                <form action="./app/controllers/admin-controller.php" method="POST" class="m-auto  d-flex flex-column justify-content-center w-100">
                     <label for="loginEmail"><b>Email :  </b></label>
                     <input type="email" name="loginEmail" placeholder="Enter your email : ">
                     <label for="loginPassword"><b>Password : </b></label>
@@ -21,7 +21,7 @@
         </div>
         <div class="modal-footer bgnav">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
-          <button type="button" class="btn btn-warning">LOGIN</button>
+          <button name="login" type="submit" class="btn btn-warning">LOGIN</button>
           </form>
         </div>
       </div>

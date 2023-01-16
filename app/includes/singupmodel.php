@@ -7,22 +7,22 @@
         </div>
         <div class="modal-body bgnav">
         <div class="w-75 d-flex m-auto">
-                <form action="" class="m-auto  d-flex flex-column justify-content-center w-100">
-                    <label for="loginEmail"><b>Full name :  </b></label>
-                    <input type="text" name="loginEmail" placeholder="Enter your full name : ">
-                    <label for="loginEmail"><b>Email :  </b></label>
-                    <input type="email" name="loginEmail" placeholder="Enter your email : ">
-                    <label for="loginPassword"><b>Password : </b></label>
-                    <input type="password" name="loginPassword" placeholder="Enter your password : ">
-                    <label for="loginPassword"><b>Repeat password : </b></label>
-                    <input type="password" name="loginPassword" placeholder="Enter your password : ">
+                <form action="./app/controllers/admin-controller.php" method="POST" class="m-auto  d-flex flex-column justify-content-center w-100">
+                    <label for="signUpEmail"><b>Full name :  </b></label>
+                    <input type="text" name="signUpName" placeholder="Enter your full name : ">
+                    <label for="signUpEmail"><b>Email :  </b></label>
+                    <input type="email" name="signUpEmail" placeholder="Enter your email : ">
+                    <label for="signUpPassword"><b>Password : </b></label>
+                    <input type="password" name="signUpPassword" placeholder="Enter your password : ">
+                    <label for="signUprePassword"><b>Repeat password : </b></label>
+                    <input type="password" name="signUprePassword" placeholder="Enter your password : ">
                
         </div>
 
         </div>
         <div class="modal-footer bgnav">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
-          <button  type="submit" class="btn btn-warning">SIGN UP</button>
+          <button name="signUp"  type="submit" class="btn btn-warning">SIGN UP</button>
           </form>
         </div>
       </div>
