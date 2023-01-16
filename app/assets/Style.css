@@ -1,0 +1,25 @@
+*{
+    font-family: 'karla';
+}
+
+body{
+    background-color: #F9E79F;
+}
+
+
+.bgnav{
+    background-color: #f7e28f;
+    border: 2px solid #fcfcfc4f;
+}
+
+.nav-link{
+    color: #5b4902;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  
