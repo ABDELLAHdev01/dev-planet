@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="./app/assets/Style.css">
+    <link rel="stylesheet" href="./app/assets/css/Style.css">
     <title>Document</title>
 </head>
 <body class="position-relative overflow-scroll" style="height: 100vh;">
@@ -25,8 +25,8 @@
             </div>
             <div class="d-flex " >
                
-                <a class="nav-item nav-link  m-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign in </a>
-                <a class="nav-item nav-link  text-dark btn btn-warning m-1 px-3" type="button" data-bs-toggle="modal" data-bs-target="#modelsignup" >Sign up</a>
+                <a class="nav-item nav-link  m-1" href="./app/pages/login.php">Sign in </a>
+                <a class="nav-item nav-link  text-dark btn btn-warning m-1 px-3" href="./app/pages/signup.php">Sign up</a>
               </div>
             </div>
        
