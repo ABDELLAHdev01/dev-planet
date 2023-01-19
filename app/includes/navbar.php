@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./app/assets/css/Style.css">
-    <title>Document</title>
+    <link rel="icon" href="./app/assets/img/icon.png" type="image/x-icon">
+
+    <title>Home - DEV PLANET</title>
 </head>
 <body class="position-relative overflow-scroll" style="height: 100vh;">
-<nav class="navbar navbar-expand-lg bgnav ">
+<nav class="navbar navbar-expand-lg bgnav " >
         <div class="container-fluid">
           <a class="navbar-brand " href="index.php">Dev <span style="color: #806903;"> Planet</span></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

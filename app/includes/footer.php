@@ -1,5 +1,5 @@
    
-<footer class="bg-bgnav text-center text-lg-start position-absolute bottom-0 w-100">
+<footer class="bg-bgnav text-center text-lg-start  bottom-0 w-100" >
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2022 Copyright:

@@ -8,6 +8,6 @@ function autoloader($classname)
     $path = "../models/".$classname.".php";
 
     if (file_exists($path)) {
-        require($path);
+        require_once($path);
     }
 }
