@@ -52,3 +52,12 @@ function addNewArticle() {
 
     
 }
+
+function getDataView(title,text,category,thumbnail){
+    document.getElementById('exampleModalLabel').innerText = title;
+    document.getElementById('thumbnaill').src = thumbnail;
+    // document.getElementById('')
+    // document.getElementById('')
+
+
+}

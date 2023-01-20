@@ -102,7 +102,29 @@ $avatar = $_SESSION['Avatar'];
                 <div class="d-flex mb-3 ms-4  me-4 justify-content-end justify-content-between ">
                     <button onclick="hideEditbtn()" class="btn btn-warning" type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i> Add Articel</button>
-                    
+                    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade modal-xl" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">What is it ai ?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img id="thumbnaill" src="https://misti.mit.edu/sites/default/files/styles/hero_home_desktop/public/2022-03/human-like-robot-and-artificial-intelligence-2022-01-06-00-25-53-utc.jpg?h=67494091&itok=C7js1A7t" alt="" class="w-75 rounded">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto minus itaque vitae. Eveniet, adipisci velit, nisi magnam illo repellendus ex aspernatur cupiditate fugiat itaque dolorum ullam nesciunt doloribus commodi laborum.</p>
+        <h4>Category : AI</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
                 </div>
                 <form action="../../controllers/admin-controller.php" method="post">
                     <div class="input-group w-75 ms-4 mb-4 ">
@@ -192,29 +214,25 @@ $avatar = $_SESSION['Avatar'];
                 </div>
 
 
-                <!-- Modal -->
-                <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content ">
-                            <div class="modal-header ">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Category</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="../../controllers/admin-controller.php" method="POST">
-                                    <input name="thecategory" type="text" class="form-control mb-3"
-                                        placeholder="Category name" required="" autofocus="" />
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button name="addCategory" type="submit" class="btn btn-warning">Add</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                 <!-- mdoal view -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
             </div>
 
@@ -226,6 +244,7 @@ $avatar = $_SESSION['Avatar'];
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
 
+   
 
     
     <script src="../../assets/js/main.js"></script>

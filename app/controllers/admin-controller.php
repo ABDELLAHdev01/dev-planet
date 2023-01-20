@@ -275,9 +275,21 @@ function CreateArticleController(){
         $text = $_POST['text'][$i];
        
         $idCat = $_POST['idCat'][$i];
-        $picture = $_FILES['picture'][$i];
-        move_uploaded_file($picture['tmp_name'][$i], '../assets/img/' . $picture['name'][$i]);
-        Admin::CreateArticle($title,$text,$picture['name'][$i],"1");
+
+        $image = $_FILES['picture']['name'][$i];
+        // var_dump($image);
+
+        $filename = uniqid();
+        $extension = pathinfo( $image, PATHINFO_EXTENSION);
+        $newname = "article-".$filename . "." . $extension;
+
+        $target = "../assets/img/".$newname;
+        move_uploaded_file($_FILES['picture']['tmp_name'][$i], $target);
+        // 
+
+        // $picture = $_FILES['picture'][$i];
+        // move_uploaded_file($picture['tmp_name'], '../assets/img/' . $picture['name'][$i]);
+        Admin::CreateArticle($title,$text,$newname,"1");
     }
 
 

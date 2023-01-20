@@ -113,7 +113,6 @@ class Admin
         <td>$category</td>
         <td>
         <form action='../../controllers/admin-controller.php' method='get'>
-
         <button type='button' onclick='getctdata(`$id`,`$category`)' class='btn btn-warning type='button'  data-bs-toggle='modal'
         data-bs-target='#exampleModal11'><i class='bi bi-pen'></i> Edit</button>
         
@@ -136,6 +135,7 @@ class Admin
             $title = $row['title'];
             // $text = $row['text'];
             // $thumbnail = $row['thumbnail'];
+            $thu = $row['thumbnail'];
             $name = $row['name'];
             $category = $row['category'];
             $text = $row['text'];
@@ -148,7 +148,7 @@ class Admin
            <td>
            <div>
            <form action='../../controllers/admin-controller.php' method='get'>
-
+           <button  onclick='getDataView(`$title`,`$text`,`$category`,`../../assets/img/$thu`)' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal1'><i class='bi bi-eye-fill'></i> View</button>
            <button type='button'  onclick='getData($id,`$title`,`$text`,$categoryid)'  class='btn btn-warning editbtn' type='button' class='btn btn-primary' data-bs-toggle='modal'
            data-bs-target='#exampleModal'><i class='bi bi-pen'></i> Edit</button>
            <a class='btn btn-danger' href='../../controllers/admin-controller.php?deleteid=$id'><i class='bi bi-trash-fill'></i> Delete</a>
