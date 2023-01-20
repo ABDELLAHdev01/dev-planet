@@ -154,17 +154,19 @@ $avatar = $_SESSION['Avatar'];
                                     <form action="../../controllers/admin-controller.php" method="post" enctype="multipart/form-data">
                                         <!-- <h4 class="text-dark">title</h4> -->
                                         <input type="hidden" id="id" name="id">
-                                        <input name="title" id="edittitle" type="text" class="form-control mb-3"
+                                        <input name="title[]"  id="edittitle" type="text" class="form-control mb-3"
                                         placeholder="The title" required="" autofocus="" />
-                                        <input name="picture" type="file" class="mb-2" accept="image/png, image/jpeg">
-                                        <textarea name="text" id="edittext" id="" class="form-control mb-3 text-left "
+                                        <input name="picture[]" type="file" class="mb-2" accept="image/png, image/jpeg">
+                                        <textarea name="text[]" id="edittext" id="" class="form-control mb-3 text-left "
                                         placeholder="The article text" style="height: 20rem; "></textarea>
-                                        <select class="form-control mb-3 text-left " id="editcategory" name="idCat" >
-                                        <option hidden selected>Select Category</option>
+                                        <select class="form-control mb-3 text-left " id="editcategory[]" name="idCat" >
+                                        <option id="categorys" hidden selected>Select Category</option>
+                                        
                                         <?php ShowCategoryOnFormController(); ?>
+                                        
                                         </select>
 
-                                        <button type="button" class="btn btn-primary w-100 mb-4" onclick="addNewArticle()">ADD MORE</button>
+                                        <button type="button" id="addmorebtn" class="btn btn-primary w-100 mb-4" onclick="addNewArticle()">ADD MORE</button>
 
 
                                     <div id="containernewForm">

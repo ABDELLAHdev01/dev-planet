@@ -176,14 +176,25 @@ function showingArticlesSearchController()
 
     $id = $res['id'];
     $title = $res['title'];
+    $text = $res['text'];
+    $categoryid = $res['idCategory'];
     $category = $res['category'];
     $name = $res['name'];
+    echo $categoryid;
     $_SESSION['article'] = " <tr>
     <th scope='row'>$id</th>
       <td>$title</td>
       <td>$category</td>
        <td>$name</td>
-       <td></td>
+       <td>
+       <div>
+           <form action='../../controllers/admin-controller.php' method='get'>
+
+           <button type='button'  onclick='getData($id,`$title`,`$text`,$categoryid)'  class='btn btn-warning editbtn' type='button' class='btn btn-primary' data-bs-toggle='modal'
+           data-bs-target='#exampleModal'><i class='bi bi-pen'></i> Edit</button>
+           <a class='btn btn-danger' href='../../controllers/admin-controller.php?deleteid=$id'><i class='bi bi-trash-fill'></i> Delete</a>
+           </form>
+             </div></td>
        </tr>";
 
     header('location: ../pages/admin/articles.php');
@@ -239,27 +250,49 @@ function ShowCategoryOnFormController()
 
 
 }
+function ShowCategoryOnFormController2()
+{
+    $res = Admin::ShowCategoryOnForm();
+
+    foreach ($res as $row) {
+        $id = $row['id'];
+        $category = $row['category'];
+        echo "
+        <option value='$id'>$category</option>
+
+        
+        ";
+    }
+
+
+}
 
 
 
 function CreateArticleController(){
-    $title = $_POST['title'] ;
-    $text = $_POST['text'];
-   
-    $idCat = $_POST['idCat'];
-    $picture = $_FILES['picture'];
-    move_uploaded_file($picture['tmp_name'], '../assets/img/' . $picture['name']);
-    Admin::CreateArticle($title,$text,$picture['name'],$idCat);
+    for ($i = 0; $i < count($_POST['title']); $i++) {
+        $title = $_POST['title'][$i];
+        $text = $_POST['text'][$i];
+       
+        $idCat = $_POST['idCat'][$i];
+        $picture = $_FILES['picture'][$i];
+        move_uploaded_file($picture['tmp_name'][$i], '../assets/img/' . $picture['name'][$i]);
+        Admin::CreateArticle($title,$text,$picture['name'][$i],"1");
+    }
+
 
 }
 function EditArticleController(){
-    $id = $_POST['id'];
-    $title = $_POST['title'] ;
-    $text = $_POST['text'];
-    $idCat = $_POST['idCat'];
-    $picture = $_FILES['picture'];
-    move_uploaded_file($picture['tmp_name'], '../assets/img/' . $picture['name']);
-    Admin::EditArticle($id, $title, $text, $picture['name'], $idCat);
+    for ($i = 0; $i < count($_POST['title']); $i++) {
+
+        $id = $_POST['id'];
+        $title = $_POST['title'][$i];
+        $text = $_POST['text'][$i];
+        $idCat = $_POST['idCat'][$i];
+        $picture = $_FILES['picture'][$i];
+        move_uploaded_file($picture['tmp_name'][$i], '../assets/img/' . $picture['name'][$i]);
+        Admin::EditArticle($id, $title, $text, $picture['name'][$i], $idCat);
+    }
 
 }
 
