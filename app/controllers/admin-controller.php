@@ -21,24 +21,24 @@ if (isset($_POST['Search']))
     showingArticlesSearchController();
 if (isset($_GET['deleteid']))
     deleteArticleController();
+if (isset($_GET['deleteCat']))
+    deleteCategory();
 if (isset($_POST['create']))
     CreateArticleController();
 if (isset($_POST['editbtn']))
     EditArticleController();
 if (isset($_POST['UpdateCategory']))
     EditCategoryController();
+if (isset($_POST['UpdateAdmin']))
+    UpdateProfileController();
 
 function loginController()
 {
     $email = $_POST['loginEmail'];
     $password = $_POST['loginPassword'];
     //security
-    $email = trim($email);
-    $email = stripslashes($email);
-    $email = htmlspecialchars($email);
-    $password = trim($password);
-    $password = stripslashes($password);
-    $password = htmlspecialchars($password);
+    $email = trim(stripslashes(htmlspecialchars($email)));
+    $password = trim(stripslashes(htmlspecialchars($password)));
 
     // Validate email
     if (empty($email)) {
@@ -82,6 +82,8 @@ function loginController()
 function signUpController()
 {
     $name = $_POST['signUpName'];
+    $picture = $_FILES['picture'];
+    move_uploaded_file($picture['tmp_name'], '../assets/img/' . $picture['name']);
     $email = $_POST['signUpEmail'];
     $password = $_POST['signUpPassword'];
     $repassword = $_POST['signuprePassword'];
@@ -125,6 +127,7 @@ function signUpController()
         if (empty($name_error) && empty($email_error) && empty($password_error)) {
             $signUp = new Admin($email, $password);
             $signUp->setName($name);
+            $signUp->setAvatar($picture['name']);
             $signUp->SignUp();
         }
     }else if($password != $repassword){
@@ -264,7 +267,30 @@ function EditCategoryController(){
     $id = $_POST['idcate'];
     $category = $_POST['thecategory2'];
 
-    
+    Admin::EditCategory($id,$category);
 
+
+
+}
+
+function deleteCategory(){
+    $id = $_GET['deleteCat'];
+    Admin::deleteCategory($id);
+}
+
+
+function UpdateProfileController(){
+    $id = $_SESSION['ID'];
+    $name = $_POST['EditName'];
+    $picture = $_FILES['picture'];
+    move_uploaded_file($picture['tmp_name'], '../assets/img/' . $picture['name']);
+    $email= $_POST['EditEmail'];
+    $password= $_POST['EditPassword'];
+    $picname = $picture['name'];
+
+    $_SESSION['NAME'] = $name;
+    $_SESSION['Avatar'] = $picname;
+    // echo $_SESSION['$Avatar'];
+    Admin::UpdateProfile($id, $name, $picture['name'], $email, $password);
 
 }

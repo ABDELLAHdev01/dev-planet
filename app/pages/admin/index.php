@@ -2,6 +2,7 @@
 include '../../controllers/admin-controller.php';
 include '../../models/admin.php';
 $name = $_SESSION['NAME'];
+$avatar = $_SESSION['Avatar'];
 showCount();
 // include '../../controllers/admin-controller.php';
 // if(!isset($_SESSION['ID'])){
@@ -39,7 +40,7 @@ showCount();
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a  class="nav-link active" href="#"><i
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.html"><i
+                    <li class="nav-item"><a class="nav-link" href="profile.php"><i
                                 class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="./articles.php"><i
                                 class="fas fa-table"></i><span>Articles</span></a></li>
@@ -78,7 +79,7 @@ showCount();
                                             class="d-none d-lg-inline me-2 text-gray-600 small">
                                             <?= $name ?>
                                         </span><img class="border rounded-circle img-profile"
-                                            src="assets/img/avatars/avatar.png"></a>
+                                            src="../../assets/img/<?= $avatar ?>"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
                                             class="dropdown-item" href="#"><i
                                                 class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
@@ -176,6 +177,7 @@ showCount();
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+    <script src="../../assets/js/main.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>

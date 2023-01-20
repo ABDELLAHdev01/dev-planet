@@ -3,6 +3,8 @@
 include '../../controllers/admin-controller.php';
 include '../../models/admin.php';
 $name = $_SESSION['NAME'];
+$avatar = $_SESSION['Avatar'];
+
 // include '../../controllers/admin-controller.php';
 // if(!isset($_SESSION['ID'])){
 //     header('location: ../../index.php');
@@ -39,7 +41,7 @@ $name = $_SESSION['NAME'];
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link " href="./index.php"><i
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.html"><i
+                    <li class="nav-item"><a class="nav-link" href="profile.php"><i
                                 class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="#"><i
                                 class="fas fa-table"></i><span>Articles</span></a></li>
@@ -73,7 +75,7 @@ $name = $_SESSION['NAME'];
                                             class="d-none d-lg-inline me-2 text-gray-600 small">
                                             <?= $name ?>
                                         </span><img class="border rounded-circle img-profile"
-                                            src="assets/img/avatars/avatar.png"></a>
+                                            src="../../assets/img/<?= $avatar ?>"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
                                             class="dropdown-item" href="#"><i
                                                 class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
@@ -162,10 +164,13 @@ $name = $_SESSION['NAME'];
                                         <?php ShowCategoryOnFormController(); ?>
                                         </select>
 
-                                        <button class="btn btn-primary w-100">ADD MORE</button>
+                                        <button type="button" class="btn btn-primary w-100 mb-4" onclick="addNewArticle()">ADD MORE</button>
 
 
+                                    <div id="containernewForm">
 
+
+                                    </div>
 
                              
 

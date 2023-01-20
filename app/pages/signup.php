@@ -77,7 +77,7 @@ body {
 </style>
 <body class="position-relative overflow-scroll" style="height: 100vh;">
 <div class="wrapper">
-    <form action="../controllers/admin-controller.php" method="POST" class="form-signin" >       
+    <form action="../controllers/admin-controller.php" method="POST" class="form-signin" enctype="multipart/form-data" >       
     <?php if (isset($_SESSION['message'])): ?>
 				<div class="alert alert-danger alert-dismissible fade show">
 				<strong>Ooups !</strong> <span style="font-size: 0.9rem;">
@@ -90,6 +90,7 @@ body {
 			<?php endif ?> 
       <h2 class="form-signin-heading">Please sign up</h2>
       <input name="signUpName" type="text" class="form-control mb-3"  placeholder="Full Name" required="" autofocus="" />
+      <input name="picture" type="file" class="form-control mb-3"   required="" autofocus="" />
       <input name="signUpEmail" type="text" class="form-control mb-3"  placeholder="Email Address" required="" autofocus="" />
       <input name="signUpPassword" type="password" class="form-control mb-3"  placeholder="Password" required="" autofocus="" />
       <input name="signuprePassword" type="password" class="form-control mb-4" placeholder=" Repeat password"  required="" autofocus="" />      

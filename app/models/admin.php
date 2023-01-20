@@ -5,11 +5,17 @@ class Admin
     protected $name;
     protected $email;
     protected $password;
+    protected $avatar;
 
 
     public function setName($name)
     {
         $this->name = $name;
+
+    }
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
 
     }
 
@@ -26,7 +32,7 @@ class Admin
     {
         $db = new Db;
         $dbcon = $db->connect_pdo();
-        $stmt = $dbcon->prepare("SELECT `id`, `name`, `email`, `password` FROM `admin` WHERE email = '$this->email' AND password = '$this->password'");
+        $stmt = $dbcon->prepare("SELECT * FROM `admin` WHERE email = '$this->email' AND password = '$this->password'");
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -40,7 +46,7 @@ class Admin
 
             $_SESSION['ID'] = $row['id'];
             $_SESSION['NAME'] = $row['name'];
-
+            $_SESSION['Avatar'] = $row['avatar'];
             header('location: ../pages/admin');
         }
 
@@ -63,7 +69,7 @@ class Admin
         } else {
             $db = new Db;
             $dbcon = $db->connect_pdo();
-            $stmt = $dbcon->prepare("INSERT INTO `admin`( `name`, `email`, `password`) VALUES ('$this->name','$this->email','$this->password')");
+            $stmt = $dbcon->prepare("INSERT INTO `admin`( `name`,`avatar`, `email`, `password`) VALUES ('$this->name','$this->avatar','$this->email','$this->password')");
             $stmt->execute();
             header('location: ../pages/login.php');
 
@@ -270,10 +276,45 @@ class Admin
     }
 
 
-    public static function EditCategory(){
-        
+    public static function EditCategory($id,$category){
+        $db = new Db;
+        $dbcon = $db->connect_pdo();
+        $stmt = $dbcon->prepare("UPDATE `category` SET `category`='$category' WHERE id = $id");
+        $stmt->execute();
+        $_SESSION['message'] = "Category has been updated!";
+        header('location: ../pages/admin/categorys.php');
     }
 
+    public static function deleteCategory($id)
+    {
+        $db = new Db;
+        $dbcon = $db->connect_pdo();
+        $stmt = $dbcon->prepare("DELETE FROM `category` WHERE id = $id ");
+        $stmt->execute();
+        $_SESSION['message'] = "Article has been deleted!";
+        header('location: ../pages/admin/categorys.php');
+    }
+
+
+    public static function UpdateProfile($id,$name,$avatar,$email,$password){
+        $db = new Db;
+        $dbcon = $db->connect_pdo();
+        if(!empty($avatar)){
+            $stmt = $dbcon->prepare("UPDATE `admin` SET `name`='$name',`avatar`='$avatar',`email`='$email',`password`='$password' WHERE id = $id");
+            $stmt->execute();
+            $_SESSION['message'] = "info updated!";
+        header('location: ../pages/admin/profile.php');
+    
+        }else{
+            $stmt = $dbcon->prepare("UPDATE `admin` SET `name`='$name',`email`='$email',`password`='$password' WHERE id = $id");
+            $stmt->execute();
+            $_SESSION['message'] = "info updated!";
+            header('location: ../pages/admin/profile.php');
+        }
+       
+
+
+    }
 
 
 

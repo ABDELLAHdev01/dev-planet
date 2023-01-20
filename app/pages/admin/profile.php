@@ -39,13 +39,13 @@ showCount();
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a  class="nav-link " href="./index.php"><i
+                    <li class="nav-item"><a class="nav-link " href="./index.php"><i
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.php"><i
-                                class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link active " href="profile.php"><i
+                                class="fas fa-user "></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="./articles.php"><i
                                 class="fas fa-table"></i><span>Articles</span></a></li>
-                    <li class="nav-item"><a class="nav-link active" href="./categorys.php"><i
+                    <li class="nav-item"><a class="nav-link " href="./categorys.php"><i
                                 class="bi bi-tags-fill"></i><span>Categorys</span></a></li>
 
                 </ul>
@@ -53,7 +53,7 @@ showCount();
                         id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
-        
+
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content" style="background-color: #F9E79F;">
 
@@ -105,63 +105,34 @@ showCount();
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></span>
                     </div>
                 <?php endif ?>
-              
-                <div class="d-flex mb-3 ms-4  me-4 justify-content-end justify-content-between ">
-                    <button  id="showbtn" class="btn btn-warning" type="button" onclick="getctdata()" data-bs-toggle="modal" data-bs-target="#exampleModal11"><i class="bi bi-bookmark-plus"></i> Add Category</button>
-                </div>
-                <div class="ms-4 me-4 mt-5">
-                    <table class="table table-primary table-striped table-responsive hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                               
-                                <th scope="col">category</th>
-                                <th scope="col">Action</th>
-                              
-                            </tr>
-                        </thead>
-                        <tbody>
+<div class="d-flex justify-content-center align-items-center ">
+<div class="w-sm-25 w-md-25  mt-5 ms-5 p-2 rounded" style="background-color: #ad9b53;">
+<div class="d-flex flex-column ">
+    <form action="../../controllers/admin-controller.php" method="post" enctype="multipart/form-data">
 
-                        <?php ShowingCategotys() ?>
-                        </tbody>
-                    </table>
+<input name="EditName" type="text" class="form-control mb-3" placeholder="Full Name"
+				required="" autofocus="" />
+<input name="EditEmail" type="text" class="form-control mb-3" placeholder="Email Address"
+				required="" autofocus="" />
+<input name="EditPassword" type="text" class="form-control mb-3" placeholder="Password"
+				required="" autofocus="" />
+<input name="picture" type="file" class="form-control mb-3">
 
-                </div>
+<button type="Submit"  name="UpdateAdmin" class="btn btn-warning ">UPDATE</button>
+</form>
+</div>
+</div>
+
+</div>
+
+               
             </div>
 
 
-            <!-- modal -->
-
-            <!-- Modal -->
-<div class="modal fade" id="exampleModal11" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form action="../../controllers/admin-controller.php" method="POST">
-                                         <input type="hidden" id="idcat" name="idcate">
-                                        <input id="categoryedit" name="thecategory2" type="text" class="form-control mb-3"
-                                        placeholder="Category name" required="" autofocus="" />
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button name="addcategory2" type="submit" class="btn btn-warning" id="addbt">Add</button>
-        <button name="UpdateCategory" type="submit" class="btn btn-warning" id="delbt">Update</button>
-
-        </form>
-
-        
-      </div>
-    </div>
-  </div>
-</div>
-
             <footer class=" sticky-footer" style="background-color: #F9E79F;">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Abdellah EL GHOULAM 2023</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © Abdellah EL GHOULAM 2023</span>
+                    </div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
