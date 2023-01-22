@@ -76,12 +76,12 @@ showCount();
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
-                                            class="d-none d-lg-inline me-2 text-gray-600 small">
+                                            class="d-none d-lg-inline me-2 text-gray-600 ">
                                             <?= $name ?>
                                         </span><img class="border rounded-circle img-profile"
                                             src="../../assets/img/<?= $avatar ?>"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
-                                            class="dropdown-item" href="#"><i
+                                            class="dropdown-item" href="./profile.php"><i
                                                 class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item"
                                             href="./signup.php"><i
@@ -105,7 +105,7 @@ showCount();
                                         unset($_SESSION['AUTHORS']) ?></span>
                                         </div>
                                     </div>
-                                    <div class="col-auto"><i class="bi bi-pencil-square fa-2x text-gray-300"></i></div>
+                                    <div class="col-auto"><i class="bi bi-pen fa-2x text-gray-300"></i></div>
                                 </div>
                             </div>
                         </div>

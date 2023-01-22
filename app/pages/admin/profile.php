@@ -78,7 +78,7 @@ showCount();
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
-                                            class="d-none d-lg-inline me-2 text-gray-600 small">
+                                            class="d-none d-lg-inline me-2 text-gray-600 ">
                                             <?= $name ?>
                                         </span><img class="border rounded-circle img-profile"
                                             src="../../assets/img/<?= $avatar ?>"></a>
@@ -106,19 +106,25 @@ showCount();
                     </div>
                 <?php endif ?>
 <div class="d-flex justify-content-center align-items-center ">
-<div class="w-sm-25 w-md-25  mt-5 ms-5 p-2 rounded" style="background-color: #ad9b53;">
+<div class="w-sm-25 w-md-25   ms-1 me-1 p-2 rounded" style="background-color: #ad9b53;">
 <div class="d-flex flex-column ">
+    <div class="d-flex justify-content-center align-items-center ">
+<img class="rounded-circle mb-3 mt-4" src="../../assets/img/<?= $avatar ?>" width="160" height="160">
+</div>
     <form action="../../controllers/admin-controller.php" method="post" enctype="multipart/form-data">
 
 <input name="EditName" type="text" class="form-control mb-3" placeholder="Full Name"
 				required="" autofocus="" />
 <input name="EditEmail" type="text" class="form-control mb-3" placeholder="Email Address"
 				required="" autofocus="" />
-<input name="EditPassword" type="text" class="form-control mb-3" placeholder="Password"
+<input name="EditPassword" type="password" class="form-control mb-3" placeholder="Password"
 				required="" autofocus="" />
 <input name="picture" type="file" class="form-control mb-3">
+<div class="d-flex justify-content-center align-items-center ">
 
-<button type="Submit"  name="UpdateAdmin" class="btn btn-warning ">UPDATE</button>
+<button type="Submit"  name="UpdateAdmin" class="btn btn-warning w-100 ">UPDATE</button>
+</div>
+
 </form>
 </div>
 </div>

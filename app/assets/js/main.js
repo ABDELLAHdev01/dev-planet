@@ -26,15 +26,17 @@ function hideEditbtn() {
 }
 
 function getctdata(id, category) {
+    document.getElementById('btnaddmorecategory').style.display = 'none';
+
   document.getElementById("delbt").style.display = "block";
   document.getElementById("addbt").style.display = "none";
-
+  
   document.getElementById("categoryedit").value = category;
   document.getElementById("idcat").value = id;
 }
 
-function addNewArticle() {
-
+function addNewArticle(categorys) {
+    let x = '`'+` ${categorys} `+'`';
   document.getElementById(
     "containernewForm"
   ).innerHTML += `<input type="hidden" id="id" name="id">
@@ -45,19 +47,35 @@ function addNewArticle() {
     placeholder="The article text" style="height: 20rem; "></textarea>
     <select class="form-control mb-3 text-left " id="editcategory" name="idCat[]" >
     <option hidden selected>Select Category</option>
-                                        <?php ShowCategoryOnFormController(); ?>
+    `+categorys+`
                                         </select>
 
-    <button type="button" class="btn btn-primary w-100 mb-4" onclick="addNewArticle()">ADD MORE</button>`;
+    <button type="button" class="btn btn-primary w-100 mb-4" onclick="addNewArticle(`+x+`)">ADD MORE</button>`;
 
     
+}
+
+function addNewCat(){
+
+    document.getElementById('container-cat').innerHTML += `<div class="d-flex">
+    <input id="categoryedit" name="thecategory2[]" type="text" class="form-control mb-3 me-2"
+    placeholder="Category name" required="" autofocus="" /> <button  type="button" onclick="addNewCat()" class="btn btn-primary h-50 w-50">Add More </button>
+</div> `
+
 }
 
 function getDataView(title,text,category,thumbnail){
     document.getElementById('exampleModalLabel').innerText = title;
     document.getElementById('thumbnaill').src = thumbnail;
-    // document.getElementById('')
-    // document.getElementById('')
+    document.getElementById('thetext').innerText = text;
+    document.getElementById('thecatrgory').innerText = "Category / "+category;
 
 
 }
+
+function hideTheCatbtnadd(){
+    document.getElementById('btnaddmorecategory').style.display = 'block';
+
+}
+
+

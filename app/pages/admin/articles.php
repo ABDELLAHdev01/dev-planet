@@ -41,7 +41,7 @@ $avatar = $_SESSION['Avatar'];
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link " href="./index.php"><i
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.php"><i
+                    <li class="nav-item"><a class="nav-link" href="./profile.php"><i
                                 class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="#"><i
                                 class="fas fa-table"></i><span>Articles</span></a></li>
@@ -72,12 +72,12 @@ $avatar = $_SESSION['Avatar'];
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
-                                            class="d-none d-lg-inline me-2 text-gray-600 small">
+                                            class="d-none d-lg-inline me-2 text-gray-600 ">
                                             <?= $name ?>
                                         </span><img class="border rounded-circle img-profile"
                                             src="../../assets/img/<?= $avatar ?>"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
-                                            class="dropdown-item" href="#"><i
+                                            class="dropdown-item" href="./profile.php"><i
                                                 class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item"
                                             href="./signup.php"><i
@@ -114,9 +114,9 @@ $avatar = $_SESSION['Avatar'];
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img id="thumbnaill" src="https://misti.mit.edu/sites/default/files/styles/hero_home_desktop/public/2022-03/human-like-robot-and-artificial-intelligence-2022-01-06-00-25-53-utc.jpg?h=67494091&itok=C7js1A7t" alt="" class="w-75 rounded">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto minus itaque vitae. Eveniet, adipisci velit, nisi magnam illo repellendus ex aspernatur cupiditate fugiat itaque dolorum ullam nesciunt doloribus commodi laborum.</p>
-        <h4>Category : AI</h4>
+        <img id="thumbnaill" src="https://misti.mit.edu/sites/default/files/styles/hero_home_desktop/public/2022-03/human-like-robot-and-artificial-intelligence-2022-01-06-00-25-53-utc.jpg?h=67494091&itok=C7js1A7t" alt="" class="rounded" style="width: 20rem;">
+        <p id="thetext">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto minus itaque vitae. Eveniet, adipisci velit, nisi magnam illo repellendus ex aspernatur cupiditate fugiat itaque dolorum ullam nesciunt doloribus commodi laborum.</p>
+        <h5 id="thecatrgory">Category : AI</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -181,14 +181,16 @@ $avatar = $_SESSION['Avatar'];
                                         <input name="picture[]" type="file" class="mb-2" accept="image/png, image/jpeg">
                                         <textarea name="text[]" id="edittext" id="" class="form-control mb-3 text-left "
                                         placeholder="The article text" style="height: 20rem; "></textarea>
-                                        <select class="form-control mb-3 text-left " id="editcategory[]" name="idCat" >
+                                        
+                                        <select class="form-control mb-3 text-left " id="editcategory" name="idCat[]" >
+                                        
                                         <option id="categorys" hidden selected>Select Category</option>
-                                        
+                                        <div id="idcar">
                                         <?php ShowCategoryOnFormController(); ?>
-                                        
+                                        </div>
                                         </select>
 
-                                        <button type="button" id="addmorebtn" class="btn btn-primary w-100 mb-4" onclick="addNewArticle()">ADD MORE</button>
+                                        <button type="button" id="addmorebtn" class="btn btn-primary w-100 mb-4" onclick="addNewArticle(`<?php ShowCategoryOnFormController(); ?>`)">ADD MORE</button>
 
 
                                     <div id="containernewForm">

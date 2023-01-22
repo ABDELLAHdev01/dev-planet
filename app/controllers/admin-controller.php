@@ -214,10 +214,12 @@ function addCategoryContoller()
 }
 function addCategoryContoller2()
 {
-    $cat = $_POST['thecategory2'];
-    Admin::createCategory($cat);
-    $_SESSION['message'] = "Category has been added!";
-    header('location: ../pages/admin/categorys.php');
+    for ($i = 0; $i < count($_POST['thecategory2']); $i++) {
+        $cat = $_POST['thecategory2'][$i];
+        Admin::createCategory($cat);
+        $_SESSION['message'] = "Category has been added!";
+        header('location: ../pages/admin/categorys.php');
+    }
 
 }
 
@@ -289,7 +291,7 @@ function CreateArticleController(){
 
         // $picture = $_FILES['picture'][$i];
         // move_uploaded_file($picture['tmp_name'], '../assets/img/' . $picture['name'][$i]);
-        Admin::CreateArticle($title,$text,$newname,"1");
+        Admin::CreateArticle($title,$text,$newname,$idCat);
     }
 
 
@@ -309,12 +311,13 @@ function EditArticleController(){
 }
 
 function EditCategoryController(){
-    $id = $_POST['idcate'];
-    $category = $_POST['thecategory2'];
+    for ($i = 0; $i < count($_POST['thecategory2']); $i++) {
+        $id = $_POST['idcate'];
+        $category = $_POST['thecategory2'][$i];
 
-    Admin::EditCategory($id,$category);
+        Admin::EditCategory($id, $category);
 
-
+    }
 
 }
 

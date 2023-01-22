@@ -41,7 +41,7 @@ showCount();
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a  class="nav-link " href="./index.php"><i
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.php"><i
+                    <li class="nav-item"><a class="nav-link" href="./profile.php"><i
                                 class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="./articles.php"><i
                                 class="fas fa-table"></i><span>Articles</span></a></li>
@@ -78,12 +78,12 @@ showCount();
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
-                                            class="d-none d-lg-inline me-2 text-gray-600 small">
+                                            class="d-none d-lg-inline me-2 text-gray-600 ">
                                             <?= $name ?>
                                         </span><img class="border rounded-circle img-profile"
                                             src="../../assets/img/<?= $avatar ?>"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
-                                            class="dropdown-item" href="#"><i
+                                            class="dropdown-item" href="./profile.php"><i
                                                 class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item"
                                             href="./signup.php"><i
@@ -107,7 +107,7 @@ showCount();
                 <?php endif ?>
               
                 <div class="d-flex mb-3 ms-4  me-4 justify-content-end justify-content-between ">
-                    <button  id="showbtn" class="btn btn-warning" type="button" onclick="getctdata()" data-bs-toggle="modal" data-bs-target="#exampleModal11"><i class="bi bi-bookmark-plus"></i> Add Category</button>
+                    <button  id="showbtn" class="btn btn-warning" type="button" onclick="hideTheCatbtnadd()" data-bs-toggle="modal" data-bs-target="#exampleModal11"><i class="bi bi-bookmark-plus"></i> Add Category</button>
                 </div>
                 <div class="ms-4 me-4 mt-5">
                     <table class="table table-primary table-striped table-responsive hover">
@@ -137,17 +137,23 @@ showCount();
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Categorys</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
       <form action="../../controllers/admin-controller.php" method="POST">
                                          <input type="hidden" id="idcat" name="idcate">
-                                        <input id="categoryedit" name="thecategory2" type="text" class="form-control mb-3"
-                                        placeholder="Category name" required="" autofocus="" />
+                                         <div class="d-flex">
+                                        <input id="categoryedit" name="thecategory2[]" type="text" class="form-control mb-3 me-2"
+                                        placeholder="Category name" required="" autofocus="" /> <button type="button" id="btnaddmorecategory"  class="btn btn-primary h-50 w-50" onclick="addNewCat()">Add More </button>
+      </div>        
+      <div id="container-cat">
+
       </div>
+      
+       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>  
         <button name="addcategory2" type="submit" class="btn btn-warning" id="addbt">Add</button>
         <button name="UpdateCategory" type="submit" class="btn btn-warning" id="delbt">Update</button>
 
