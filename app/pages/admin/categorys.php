@@ -1,6 +1,11 @@
 <?php
+
 include '../../controllers/admin-controller.php';
 include '../../models/admin.php';
+if(!isset($_SESSION['NAME'])){
+    header('location: ../../../index.php');
+
+}
 $name = $_SESSION['NAME'];
 $avatar = $_SESSION['Avatar'];
 
@@ -85,8 +90,8 @@ showCount();
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
                                             class="dropdown-item" href="./profile.php"><i
                                                 class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item"
-                                            href="./signup.php"><i
+                                        <div class="dropdown-divider"></div><form action="../../controllers/admin-controller.php" method="post"><button class="dropdown-item"
+                                            type="submit" name="LogOut"></form><i
                                                 class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
                                 </div>
@@ -100,6 +105,17 @@ showCount();
                             <?php
                             echo $_SESSION['message'];
                             unset($_SESSION['message']);
+                            ?>
+                        </span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></span>
+                    </div>
+                <?php endif ?>
+                <?php if (isset($_SESSION['messageerr'])): ?>
+                    <div class="alert alert-danger alert-dismissible fade show ms-4 me-3">
+                        <strong>Ops !</strong> <span style="font-size: 0.9rem;">
+                            <?php
+                            echo $_SESSION['messageerr'];
+                            unset($_SESSION['messageerr']);
                             ?>
                         </span>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></span>

@@ -1,7 +1,7 @@
 <?php
-if(null !== session_start()){
+if (null !== session_start()) {
 
-}else{
+} else {
     session_start();
 }
 
@@ -31,6 +31,8 @@ if (isset($_POST['UpdateCategory']))
     EditCategoryController();
 if (isset($_POST['UpdateAdmin']))
     UpdateProfileController();
+if (isset($_POST['LogOut']))
+    LogOutController();
 
 function loginController()
 {
@@ -130,7 +132,7 @@ function signUpController()
             $signUp->setAvatar($picture['name']);
             $signUp->SignUp();
         }
-    }else if($password != $repassword){
+    } else if ($password != $repassword) {
         $_SESSION['message'] = "The passwords do not match. Please re-enter your password!";
         header('location: ../pages/signup.php');
 
@@ -150,7 +152,8 @@ function showCount()
 
 
 
-function ShowingCategotys(){
+function ShowingCategotys()
+{
     Admin::ShowCategorys();
 }
 
@@ -271,32 +274,34 @@ function ShowCategoryOnFormController2()
 
 
 
-function CreateArticleController(){
+function CreateArticleController()
+{
     for ($i = 0; $i < count($_POST['title']); $i++) {
         $title = $_POST['title'][$i];
         $text = $_POST['text'][$i];
-       
+
         $idCat = $_POST['idCat'][$i];
 
         $image = $_FILES['picture']['name'][$i];
         // var_dump($image);
 
         $filename = uniqid();
-        $extension = pathinfo( $image, PATHINFO_EXTENSION);
-        $newname = "article-".$filename . "." . $extension;
+        $extension = pathinfo($image, PATHINFO_EXTENSION);
+        $newname = "article-" . $filename . "." . $extension;
 
-        $target = "../assets/img/".$newname;
+        $target = "../assets/img/" . $newname;
         move_uploaded_file($_FILES['picture']['tmp_name'][$i], $target);
         // 
 
         // $picture = $_FILES['picture'][$i];
         // move_uploaded_file($picture['tmp_name'], '../assets/img/' . $picture['name'][$i]);
-        Admin::CreateArticle($title,$text,$newname,$idCat);
+        Admin::CreateArticle($title, $text, $newname, $idCat);
     }
 
 
 }
-function EditArticleController(){
+function EditArticleController()
+{
     for ($i = 0; $i < count($_POST['title']); $i++) {
 
         $id = $_POST['id'];
@@ -310,7 +315,8 @@ function EditArticleController(){
 
 }
 
-function EditCategoryController(){
+function EditCategoryController()
+{
     for ($i = 0; $i < count($_POST['thecategory2']); $i++) {
         $id = $_POST['idcate'];
         $category = $_POST['thecategory2'][$i];
@@ -321,19 +327,21 @@ function EditCategoryController(){
 
 }
 
-function deleteCategory(){
+function deleteCategory()
+{
     $id = $_GET['deleteCat'];
     Admin::deleteCategory($id);
 }
 
 
-function UpdateProfileController(){
+function UpdateProfileController()
+{
     $id = $_SESSION['ID'];
     $name = $_POST['EditName'];
     $picture = $_FILES['picture'];
     move_uploaded_file($picture['tmp_name'], '../assets/img/' . $picture['name']);
-    $email= $_POST['EditEmail'];
-    $password= $_POST['EditPassword'];
+    $email = $_POST['EditEmail'];
+    $password = $_POST['EditPassword'];
     $picname = $picture['name'];
 
     $_SESSION['NAME'] = $name;
@@ -341,4 +349,10 @@ function UpdateProfileController(){
     // echo $_SESSION['$Avatar'];
     Admin::UpdateProfile($id, $name, $picture['name'], $email, $password);
 
+}
+
+
+function LogOutController()
+{
+    Admin::LogOut();
 }

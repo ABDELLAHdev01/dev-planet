@@ -1,5 +1,6 @@
 <?php
 session_start();
+if (isset($_SESSION['NAME'])) { header('location: ./admin/index.php');} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,14 +8,17 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/src/parsley.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="icon" href="../assets/img/icon.png" type="image/x-icon">
 
 <title>SignUp - DEV PLANET</title>
 </head>
 <style>
+	
 
     *{
+
     font-family: 'karla';
 }
 
@@ -77,7 +81,7 @@ body {
 </style>
 <body class="position-relative overflow-scroll" style="height: 100vh;">
 <div class="wrapper">
-    <form action="../controllers/admin-controller.php" method="POST" class="form-signin" enctype="multipart/form-data" >       
+    <form data-parsley-validate  action="../controllers/admin-controller.php" method="POST" class="form-signin" enctype="multipart/form-data" >       
     <?php if (isset($_SESSION['message'])): ?>
 				<div class="alert alert-danger alert-dismissible fade show">
 				<strong>Ooups !</strong> <span style="font-size: 0.9rem;">
@@ -89,17 +93,19 @@ body {
 				</div>
 			<?php endif ?> 
       <h2 class="form-signin-heading">Please sign up</h2>
-      <input name="signUpName" type="text" class="form-control mb-3"  placeholder="Full Name" required="" autofocus="" />
-      <input name="picture" type="file" class="form-control mb-3"   required="" autofocus="" />
-      <input name="signUpEmail" type="text" class="form-control mb-3"  placeholder="Email Address" required="" autofocus="" />
-      <input name="signUpPassword" type="password" class="form-control mb-3"  placeholder="Password" required="" autofocus="" />
-      <input name="signuprePassword" type="password" class="form-control mb-4" placeholder=" Repeat password"  required="" autofocus="" />      
+      <input name="signUpName" type="text" class="form-control mb-3"  placeholder="Full Name" required />
+      <input name="picture" type="file" class="form-control mb-3"   required autofocus="" />
+      <input name="signUpEmail" type="text" class="form-control mb-3"  placeholder="Email Address" required data-parsley-type="email" autofocus="" />
+      <input name="signUpPassword" type="password" class="form-control mb-3"  placeholder="Password" required data-parsley-length="[8, 10]" autofocus="" />
+      <input name="signuprePassword" type="password" class="form-control mb-4" placeholder=" Repeat password"  required data-parsley-length="[6, 10]" autofocus="" />      
     
       <button name="signUp" class="btn btn-lg btn-warning btn-block btncn w-100 mb-4" type="submit">Sign Up</button>   
       <a href="./login.php">Create an account to get started !</a>
 
     </form>
   </div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

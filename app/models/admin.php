@@ -91,7 +91,7 @@ class Admin
             $name = $row['name'];
             $category = $row['category'];
             echo " <tr>
-        <th scope='row'>$id </th>
+          <th scope='row'>$id </th>
           <td>$title</td>
           <td>$category</td>
            <td>$name</td>
@@ -99,7 +99,8 @@ class Admin
         }
     }
 
-    public static function ShowCategorys(){
+    public static function ShowCategorys()
+    {
 
         $db = new Db;
         $dbcon = $db->connect_pdo();
@@ -141,10 +142,10 @@ class Admin
             $text = $row['text'];
             $categoryid = $row['idCategory'];
             echo " <tr>
-        <th scope='row'>$id </th>
-          <td>$title</td>
-          <td>$category</td>
-           <td>$name</td>
+            <th scope='row'>$id </th>
+            <td>$title</td>
+            <td>$category</td>
+            <td>$name</td>
            <td>
            <div>
            <form action='../../controllers/admin-controller.php' method='get'>
@@ -175,7 +176,7 @@ class Admin
     {
         $db = new Db;
         $dbcon = $db->connect_pdo();
-        $stmt = $dbcon->prepare('SELECT COUNT(*) FROM `article` ');
+        $stmt = $dbcon->prepare('SELECT COUNT(*) FROM `article`');
         $stmt->execute();
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
         return $res['COUNT(*)'];
@@ -198,7 +199,7 @@ class Admin
         $dbcon = $db->connect_pdo();
         $stmt = $dbcon->prepare("INSERT INTO `category`( `category`) VALUES ('$category')");
         $stmt->execute();
-       
+
     }
 
 
@@ -209,9 +210,19 @@ class Admin
         $dbcon = $db->connect_pdo();
         $stmt = $dbcon->prepare("SELECT article.id , article.title , article.text , article.thumbnail , article.idCategory , article.idadmin , admin.name , category.category FROM article , admin , category WHERE article.idCategory = category.id AND article.idadmin = admin.id AND article.title LIKE '%$search%'");
         $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $count = $stmt->fetchColumn();
+        if($count>0){
+        
+        $quer = $dbcon->prepare("SELECT article.id , article.title , article.text , article.thumbnail , article.idCategory , article.idadmin , admin.name , category.category FROM article , admin , category WHERE article.idCategory = category.id AND article.idadmin = admin.id AND article.title LIKE '%$search%'");
+        $quer->execute();
+        $row = $quer->fetch(PDO::FETCH_ASSOC);
+                return $row;
 
-        return $row;
+        }else{
+            $_SESSION['messageerr'] = "theres no article with this title!";
+            header('location: ../pages/admin/articles.php');
+        }
+
 
     }
 
@@ -227,7 +238,7 @@ class Admin
     }
 
 
-    public static function CreateArticle($title,$text,$thumbnail,$idCat)
+    public static function CreateArticle($title, $text, $thumbnail, $idCat)
     {
         $db = new Db;
         $dbcon = $db->connect_pdo();
@@ -251,32 +262,33 @@ class Admin
         return $res;
     }
 
-    public static function EditArticle($id,$title,$text,$thumbnail,$idCat)
+    public static function EditArticle($id, $title, $text, $thumbnail, $idCat)
     {
 
         $db = new Db;
         $dbcon = $db->connect_pdo();
-        
-           if(empty($thumbnail)){
+
+        if (empty($thumbnail)) {
             $stmt = $dbcon->prepare("UPDATE `article` SET `title` = '$title', `text` = '$text', `idCategory` = '$idCat' WHERE `article`.`id` = $id");
             $stmt->execute();
             $_SESSION['message'] = "Article has been Added!";
             header('location: ../pages/admin/articles.php');
-        }else{
+        } else {
             $stmt = $dbcon->prepare("UPDATE `article` SET `title` = '$title', `text` = '$text', `thumbnail` = '$thumbnail', `idCategory` = '$idCat' WHERE `article`.`id` = $id");
             $stmt->execute();
             $_SESSION['message'] = "Article has been Added!";
-        header('location: ../pages/admin/articles.php');
-            
+            header('location: ../pages/admin/articles.php');
+
         }
-        
+
 
 
 
     }
 
 
-    public static function EditCategory($id,$category){
+    public static function EditCategory($id, $category)
+    {
         $db = new Db;
         $dbcon = $db->connect_pdo();
         $stmt = $dbcon->prepare("UPDATE `category` SET `category`='$category' WHERE id = $id");
@@ -289,6 +301,18 @@ class Admin
     {
         $db = new Db;
         $dbcon = $db->connect_pdo();
+        $stmt = $dbcon->prepare("SELECT COUNT(*) FROM article WHERE idCategory= $id");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result['COUNT(*)']>0){
+            $_SESSION['messageerr'] = "Category Cannot Get Deleted!";
+            header('location: ../pages/admin/categorys.php');
+
+        } else{
+
+        }
+        $db = new Db;
+        $dbcon = $db->connect_pdo();
         $stmt = $dbcon->prepare("DELETE FROM `category` WHERE id = $id ");
         $stmt->execute();
         $_SESSION['message'] = "Article has been deleted!";
@@ -296,24 +320,39 @@ class Admin
     }
 
 
-    public static function UpdateProfile($id,$name,$avatar,$email,$password){
+    public static function UpdateProfile($id, $name, $avatar, $email, $password)
+    {
         $db = new Db;
         $dbcon = $db->connect_pdo();
-        if(!empty($avatar)){
+        if (!empty($avatar)) {
             $stmt = $dbcon->prepare("UPDATE `admin` SET `name`='$name',`avatar`='$avatar',`email`='$email',`password`='$password' WHERE id = $id");
             $stmt->execute();
             $_SESSION['message'] = "info updated!";
-        header('location: ../pages/admin/profile.php');
-    
-        }else{
+            header('location: ../pages/admin/profile.php');
+
+        } else {
             $stmt = $dbcon->prepare("UPDATE `admin` SET `name`='$name',`email`='$email',`password`='$password' WHERE id = $id");
             $stmt->execute();
             $_SESSION['message'] = "info updated!";
             header('location: ../pages/admin/profile.php');
         }
-       
 
 
+
+    }
+
+    public static function LogOut()
+    {
+
+        session_start();
+
+        unset($_SESSION['ID']);
+        unset($_SESSION['NAME']);
+
+        session_destroy();
+
+
+        header('location: ../../index.php');
     }
 
 

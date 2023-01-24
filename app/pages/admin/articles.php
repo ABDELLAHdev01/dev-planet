@@ -1,10 +1,14 @@
 <?php
+
 // session_start();
 include '../../controllers/admin-controller.php';
 include '../../models/admin.php';
 $name = $_SESSION['NAME'];
 $avatar = $_SESSION['Avatar'];
+if(!isset($_SESSION['NAME'])){
+    header('location: ../../../index.php');
 
+}
 // include '../../controllers/admin-controller.php';
 // if(!isset($_SESSION['ID'])){
 //     header('location: ../../index.php');
@@ -79,9 +83,9 @@ $avatar = $_SESSION['Avatar'];
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
                                             class="dropdown-item" href="./profile.php"><i
                                                 class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item"
-                                            href="./signup.php"><i
-                                                class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                        <div class="dropdown-divider"></div><form action="../../controllers/admin-controller.php" method="post"><button class="dropdown-item"
+                                            type="submit" name="LogOut"></form><i
+                                                class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</button>
                                     </div>
                                 </div>
                             </li>
@@ -94,6 +98,17 @@ $avatar = $_SESSION['Avatar'];
                             <?php
                             echo $_SESSION['message'];
                             unset($_SESSION['message']);
+                            ?>
+                        </span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></span>
+                    </div>
+                <?php endif ?>
+                <?php if (isset($_SESSION['messageerr'])): ?>
+                    <div class="alert alert-danger alert-dismissible fade show ms-4 me-3">
+                        <strong>Done !</strong> <span style="font-size: 0.9rem;">
+                            <?php
+                            echo $_SESSION['messageerr'];
+                            unset($_SESSION['messageerr']);
                             ?>
                         </span>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></span>
@@ -114,7 +129,9 @@ $avatar = $_SESSION['Avatar'];
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img id="thumbnaill" src="https://misti.mit.edu/sites/default/files/styles/hero_home_desktop/public/2022-03/human-like-robot-and-artificial-intelligence-2022-01-06-00-25-53-utc.jpg?h=67494091&itok=C7js1A7t" alt="" class="rounded" style="width: 20rem;">
+        <div class="d-flex align-items-center justify-content-center mb-3">
+        <img id="thumbnaill" src="https://misti.mit.edu/sites/default/files/styles/hero_home_desktop/public/2022-03/human-like-robot-and-artificial-intelligence-2022-01-06-00-25-53-utc.jpg?h=67494091&itok=C7js1A7t" alt="" class="rounded" style="width: 25rem;">
+        </div>
         <p id="thetext">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto minus itaque vitae. Eveniet, adipisci velit, nisi magnam illo repellendus ex aspernatur cupiditate fugiat itaque dolorum ullam nesciunt doloribus commodi laborum.</p>
         <h5 id="thecatrgory">Category : AI</h5>
       </div>
@@ -162,7 +179,7 @@ $avatar = $_SESSION['Avatar'];
 
 
                 <!-- modals -->
-                <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -182,9 +199,9 @@ $avatar = $_SESSION['Avatar'];
                                         <textarea name="text[]" id="edittext" id="" class="form-control mb-3 text-left "
                                         placeholder="The article text" style="height: 20rem; "></textarea>
                                         
-                                        <select class="form-control mb-3 text-left " id="editcategory" name="idCat[]" >
+                                        <select class="form-select mb-3 text-left " id="editcategory" name="idCat[]" >
                                         
-                                        <option id="categorys" hidden selected>Select Category</option>
+                                        <option id="categorys" hidden selected value="999">Select Category</option>
                                         <div id="idcar">
                                         <?php ShowCategoryOnFormController(); ?>
                                         </div>
