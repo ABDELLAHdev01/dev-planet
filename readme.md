@@ -1,4 +1,4 @@
-# Planet.DEV is a community of developers who gather around the discovery and exploration of current development news. The first phase of the project is to create an admin dashboard that will allow for management of news content related to technology updates.
+ Planet.DEV is a community of developers who gather around the discovery and exploration of current development news. The first phase of the project is to create an admin dashboard that will allow for management of news content related to technology updates.
 
 # Functional Requirements:
 
